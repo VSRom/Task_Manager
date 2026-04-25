@@ -1,0 +1,34 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build directories
+out/
+build/
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Compiled files
+*.exe
+*.dll
+*.pdb
+*.o
+*.obj
+
+# Qt
+*.moc
+*.qrc
+*.ui
