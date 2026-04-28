@@ -2,16 +2,18 @@
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), db_() {
+    : QMainWindow(parent), db_()
+{
     setupUI();
     loadTasks();
 }
 
 MainWindow::~MainWindow() {}
 
-void MainWindow::setupUI() {
+void MainWindow::setupUI()
+{
     setWindowTitle("Task Manager");
-    setMinimumSize(801, 600);
+    setMinimumSize(800, 600);
 
     // Виджеты
     taskList_ = new QListWidget(this);
@@ -48,11 +50,13 @@ void MainWindow::setupUI() {
     connect(taskInput_, &QLineEdit::returnPressed, this, &MainWindow::addTask);
 }
 
-void MainWindow::loadTasks() {
+void MainWindow::loadTasks()
+{
     taskList_->clear();
     auto tasks = db_.getAllTasks();
     
-    for (const auto& task : tasks) {
+    for (const auto& task : tasks)
+    {
         QString text = QString::fromStdString(task.title());
         if (task.completed()) {
             text += " ✓";
@@ -61,36 +65,44 @@ void MainWindow::loadTasks() {
     }
 }
 
-void MainWindow::addTask() {
+void MainWindow::addTask()
+{
     QString title = taskInput_->text().trimmed();
-    if (title.isEmpty()) {
+
+    if (title.isEmpty())
+    {
         QMessageBox::warning(this, "Ошибка", "Введите название задачи!");
         return;
     }
     
-    if (db_.addTask(title.toStdString())) {
+    if (db_.addTask(title.toStdString()))
+    {
         taskInput_->clear();
         refreshTasks();
-    } else {
-        QMessageBox::critical(this, "Ошибка", "Не удалось добавить задачу!");
     }
+    else
+        QMessageBox::critical(this, "Ошибка", "Не удалось добавить задачу!");
+
 }
 
-void MainWindow::deleteTask() {
+void MainWindow::deleteTask()
+{
     int row = taskList_->currentRow();
-    if (row < 0) {
+
+    if (row < 0)
+    {
         QMessageBox::warning(this, "Ошибка", "Выберите задачу для удаления!");
         return;
     }
     
     auto tasks = db_.getAllTasks();
-    if (row < static_cast<int>(tasks.size())) {
-        if (db_.deleteTask(tasks[row].id())) {
+
+    if (row < static_cast<int>(tasks.size()))
+        if (db_.deleteTask(tasks[row].id()))
             refreshTasks();
-        }
-    }
 }
 
-void MainWindow::refreshTasks() {
+void MainWindow::refreshTasks()
+{
     loadTasks();
 }

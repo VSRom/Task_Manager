@@ -2,11 +2,11 @@
   "version": 3,
   "configurePresets": [
     {
-      "hidden": true,
-      "name": "Qt",
+      "name": "qt-local",
       "cacheVariables": {
-        "CMAKE_PREFIX_PATH": "$env{QTDIR}"
-      },
+        "CMAKE_PREFIX_PATH": "C:/QT/6.4.1/msvc2019_64"
+      }
+    },
       "vendor": {
         "qt-project.org/Qt": {
           "checksum": "wVa86FgEkvdCTVp1/nxvrkaemJc="
@@ -16,7 +16,7 @@
   ],
   "vendor": {
     "qt-project.org/Presets": {
-      "checksum": "67SmY24ZeVbebyKD0fGfIzb/bGI="
+      "checksum": "eGPNVgwThSgmgdZX7HCiZM8MU2k="
     }
   }
 }
